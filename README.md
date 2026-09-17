@@ -21,28 +21,39 @@ ToneKit is a macOS menu-bar utility that rewrites selected text with Gemini in a
    export GEMINI_API_KEY="your-gemini-api-key"
    ```
 
-3. Optional: choose a different Gemini model:
+3. Create and activate a project virtual environment, then install the dependencies:
+
+   ```bash
+   cd /Users/dhaneshbaheti/Documents/tonekit
+   python3 -m venv .venv
+   .venv/bin/python -m pip install --upgrade pip
+   .venv/bin/python -m pip install pyobjc requests
+   source .venv/bin/activate
+   ```
+
+4. Optional: choose a different Gemini model:
 
    ```bash
    export GEMINI_MODEL="gemini-2.5-flash"
    ```
 
-4. Allow the Python runtime under **System Settings > Privacy & Security > Accessibility**.
+5. Allow `.venv/bin/python` under **System Settings > Privacy & Security > Accessibility**.
 
 ## Run
 
-From Terminal:
+From the activated virtual environment:
 
 ```bash
 cd /Users/dhaneshbaheti/Documents/tonekit
-/usr/local/bin/python3 tonekit.py
+export GEMINI_API_KEY="your-gemini-api-key"
+.venv/bin/python tonekit.py
 ```
 
 ToneKit appears in the menu bar. Select text in any app and press **Option + Command + E**. Choose a tone such as Formal, Academic, Fun, or Concise. The selected text is replaced with the enhanced version.
 
 ## Troubleshooting
 
-- If the shortcut does nothing, confirm Accessibility permission for `/usr/local/bin/python3`, then quit and relaunch ToneKit.
+- If the shortcut does nothing, confirm Accessibility permission for `.venv/bin/python`, then quit and relaunch ToneKit.
 - If the popup appears but rewriting fails, check that `GEMINI_API_KEY` is set in the same Terminal session used to launch the app.
 - ToneKit writes diagnostic information to `/tmp/tonekit.log`.
 - Do not put the API key in `tonekit.py` or commit it to source control.
